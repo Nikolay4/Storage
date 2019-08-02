@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Storage.Models.Item>
+@{
+    //ViewData["Title"] = "123";
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Магазин смартфонов</title>
+</head>
+<body>
+    <h3>123</h3>
+    <table>
+        <tr>
+            <td>Модель</td>
+            <td>Производитель</td>
+            <td>Цена</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.Count</td>
+                <td>@item.Price</td>
+            </tr>
+        }
+    </table>
+</body>
+</html>
