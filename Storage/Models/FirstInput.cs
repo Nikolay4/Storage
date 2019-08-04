@@ -9,7 +9,7 @@ namespace Storage.Models
     {
         public static void Initialize(StorageContext context)
         {
-            //if (!context.Items.Any())
+            if (!context.Items.Any())
             {
                 context.Items.AddRange(
                     new Item
