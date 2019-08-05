@@ -143,10 +143,10 @@
                                     </datalist>
 
                                 </div>
-                                <div class="cell"><input type="text" asp-for="expend.DocNumber" placeholder="DocNumber" /></div>
-                                <div class="cell"><input type="number" asp-for="expend.Count" placeholder="Count" /></div>
-                                <div class="cell"><input type="number" asp-for="expend.Price" placeholder="Price" /></div>
-                                <div class="cell"><input type="date" asp-for="expend.Date" placeholder="Date" /></div>
+                                <div class="cell"><input type="text" asp-for="expend.DocNumber" placeholder="DocNumber" /><span asp-validation-for="expend.DocNumber"></span></div>
+                                <div class="cell"><input type="number" asp-for="expend.Count" placeholder="Count" /><span asp-validation-for="expend.Count"></span></div>
+                                <div class="cell"><input type="number" asp-for="expend.Price" placeholder="Price" /><span asp-validation-for="expend.Price"></span></div>
+                                <div class="cell"><input type="date" asp-for="expend.Date" placeholder="Date" /><span asp-validation-for="expend.Date"></span></div>
 
                                 <div class="cell"><input type="submit" placeholder="Add" /></div>
                                 <span asp-validation-for="expend.DocNumber"></span>
