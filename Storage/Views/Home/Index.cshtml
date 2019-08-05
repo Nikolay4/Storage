@@ -10,135 +10,154 @@
     <title>Storage</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.min.js"
+            asp-fallback-src="~/lib/jquery-validation/dist/jquery.validate.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator">
+    </script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"
+            asp-fallback-src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"
+            asp-fallback-test="window.jQuery && window.jQuery.validator && window.jQuery.validator.unobtrusive">
+    </script>
 </head>
 <body>
 
     <div class="wrapper">
         <div class="table">
-            <div class="row header">
-                <div class="cell">id</div>
-                <div class="cell">name</div>
-                <div class="cell">count</div>
-                <div class="cell">price</div>
+            <div class="row tablename">
+                <div class="cell">Items</div>
             </div>
-            @foreach (var item in Model.Items)
-            {
-                <div class="row">
-                    <div class="cell">@item.Id</div>
-                    <div class="cell">@item.Name</div>
-                    <div class="cell">@item.Count</div>
-                    <div class="cell">@item.Price</div>
+                <div class="row header">
+                    <div class="cell">id</div>
+                    <div class="cell">name</div>
+                    <div class="cell">count</div>
+                    <div class="cell">price</div>
                 </div>
-            }
-        </div>
-
-        <div>
-            <div>
-                <div class="table">
-                    <div class="row header">
-                        <div class="cell">id</div>
-                        <div class="cell">itemid</div>
-                        <div class="cell">docnumber</div>
-                        <div class="cell">price</div>
-                        <div class="cell">count</div>
-                        <div class="cell">date</div>
-                    </div>
-                    @foreach (var item in Model.Expends)
-                    {
-                        <div class="row">
-                            <div class="cell">@item.Id</div>
-                            <div class="cell">@item.ItemId.Id</div>
-                            <div class="cell">@item.DocNumber</div>
-                            <div class="cell">@item.Price</div>
-                            <div class="cell">@item.Count</div>
-                            <div class="cell">@item.Date</div>
-                        </div>
-                    }
-                </div>
-            </div>
-
-            <div>
-                <div class="table">
-                    <div class="row header">
-                        <div class="cell">id</div>
-                        <div class="cell">itemid</div>
-                        <div class="cell">docnumber</div>
-                        <div class="cell">price</div>
-                        <div class="cell">count</div>
-                        <div class="cell">date</div>
-                    </div>
-                    @foreach (var item in Model.Incomes)
-                    {
+                @foreach (var item in Model.Items)
+                {
                     <div class="row">
                         <div class="cell">@item.Id</div>
-                        <div class="cell">@item.ItemId.Id</div>
-                        <div class="cell">@item.DocNumber</div>
-                        <div class="cell">@item.Price</div>
+                        <div class="cell">@item.Name</div>
                         <div class="cell">@item.Count</div>
-                        <div class="cell">@item.Date</div>
+                        <div class="cell">@item.Price</div>
                     </div>
-                    }
-                </div>
-                <div class="table">
-                    <div class="row header">
-                        <div class="cell">Add Incom</div>
-                    </div>
-                    <div class="row">
-                        <form asp-action="CreateIncome" asp-controller="home">
-                            <div class="cell">
-                                <input asp-for="incom.ItemId.Id" list="brow" placeholder="ItemId" />
+                }
+            </div>
 
-                                <datalist id="brow">
-                                    @foreach (var it in Model.Items.ToList())
-                                    {
-                                    <option value="@it.Id" title="@it.Id (@it.Name)" />
-                                    }
-                                </datalist>
-
+            <div>
+                <div>
+                    <div class="table">
+                        <div class="row tablename">
+                            <div class="cell">Incomes</div>
+                        </div>
+                        <div class="row header">
+                            <div class="cell">id</div>
+                            <div class="cell">itemid</div>
+                            <div class="cell">docnumber</div>
+                            <div class="cell">price</div>
+                            <div class="cell">count</div>
+                            <div class="cell">date</div>
+                        </div>
+                        @foreach (var inc in Model.Incomes)
+                        {
+                            <div class="row">
+                                <div class="cell">@inc.Id</div>
+                                <div class="cell">@inc.ItemId.Id</div>
+                                <div class="cell">@inc.DocNumber</div>
+                                <div class="cell">@inc.Price</div>
+                                <div class="cell">@inc.Count</div>
+                                <div class="cell">@inc.Date</div>
                             </div>
-                            <div class="cell"><input type="text" asp-for="incom.DocNumber" placeholder="DocNumber" /></div>
-                            <div class="cell"><input type="number" asp-for="incom.Count" placeholder="Count" /></div>
-                            <div class="cell"><input type="number" asp-for="incom.Price" placeholder="Price" /></div>
-                            <div class="cell"><input type="date" asp-for="incom.Date" placeholder="Date" /></div>
-
-                            <div class="cell"><input type="submit" placeholder="Add" /></div>
-                        </form>
+                        }
                     </div>
-
                 </div>
 
-
-                <div class="table">
-                    <div class="row header">
-                        <div class="cell">Add Expend</div>
-                    </div>
-                    <div class="row">
-                        <form asp-action="CreateExpend" asp-controller="home">
-                            <div class="cell">
-                                <input asp-for="expend.ItemId.Id" list="brow" placeholder="ItemId" />
-
-                                <datalist id="brow">
-                                    @foreach (var it in Model.Items.ToList())
-                                    {
-                                    <option value="@it.Id" title="@it.Id (@it.Name)" />
-                                    }
-                                </datalist>
-
+                <div>
+                    <div class="table">
+                        <div class="row tablename">
+                            <div class="cell">Expends</div>
+                        </div>
+                        <div class="row header">
+                            <div class="cell">id</div>
+                            <div class="cell">itemid</div>
+                            <div class="cell">docnumber</div>
+                            <div class="cell">price</div>
+                            <div class="cell">count</div>
+                            <div class="cell">date</div>
+                        </div>
+                        @foreach (var exp in Model.Expends)
+                        {
+                            <div class="row">
+                                <div class="cell">@exp.Id</div>
+                                <div class="cell">@exp.ItemId.Id</div>
+                                <div class="cell">@exp.DocNumber</div>
+                                <div class="cell">@exp.Price</div>
+                                <div class="cell">@exp.Count</div>
+                                <div class="cell">@exp.Date</div>
                             </div>
-                            <div class="cell"><input type="text" asp-for="expend.DocNumber" placeholder="DocNumber" /></div>
-                            <div class="cell"><input type="number" asp-for="expend.Count" placeholder="Count" /></div>
-                            <div class="cell"><input type="number" asp-for="expend.Price" placeholder="Price" /></div>
-                            <div class="cell"><input type="date" asp-for="expend.Date" placeholder="Date" /></div>
+                            
+                        }
+                    </div>
+                    <div class="table">
+                        <div class="row header">
+                            <div class="cell">Add Incom</div>
+                        </div>
+                        <div class="row">
+                            <form asp-action="CreateIncome" asp-controller="home">
+                                <div class="cell">
+                                    <input asp-for="incom.ItemId.Id" list="brow" placeholder="ItemId" />
+                                    <span asp-validation-for="incom.ItemId"></span>
+                                    <datalist id="brow">
+                                        @foreach (var it in Model.Items.ToList())
+                                        {
+                                        <option value="@it.Id" title="@it.Id (@it.Name)" />
+                                        }
+                                    </datalist>
 
-                            <div class="cell"><input type="submit" placeholder="Add" /></div>
-                        </form>
+                                </div>
+                                <div class="cell"><input type="text" asp-for="incom.DocNumber" placeholder="DocNumber" /><span asp-validation-for="incom.DocNumber"></span></div>
+                                <div class="cell"><input type="number" asp-for="incom.Count" placeholder="Count" /><span asp-validation-for="incom.Count"></span></div>
+                                <div class="cell"><input type="number" asp-for="incom.Price" placeholder="Price" /><span asp-validation-for="incom.Price"></span></div>
+                                <div class="cell"><input type="date" asp-for="incom.Date" value="2019-01-01" placeholder="Date" /><span asp-validation-for="incom.Date"></span></div>
+
+                                <div class="cell"><input type="submit" placeholder="Add" /></div>
+                                @*<span asp-validation-for="incom.DocNumber"></span>*@
+                            </form>
+                        </div>
                     </div>
 
+
+                    <div class="table">
+                        <div class="row header">
+                            <div class="cell">Add Expend</div>
+                        </div>
+                        <div class="row">
+                            <form asp-action="CreateExpend" asp-controller="home">
+                                <div class="cell">
+                                    <input asp-for="expend.ItemId.Id" list="brow" placeholder="ItemId" />
+
+                                    <datalist id="brow">
+                                        @foreach (var it in Model.Items.ToList())
+                                        {
+                                            <option value="@it.Id" title="@it.Id (@it.Name)" />
+                                        }
+                                    </datalist>
+
+                                </div>
+                                <div class="cell"><input type="text" asp-for="expend.DocNumber" placeholder="DocNumber" /></div>
+                                <div class="cell"><input type="number" asp-for="expend.Count" placeholder="Count" /></div>
+                                <div class="cell"><input type="number" asp-for="expend.Price" placeholder="Price" /></div>
+                                <div class="cell"><input type="date" asp-for="expend.Date" placeholder="Date" /></div>
+
+                                <div class="cell"><input type="submit" placeholder="Add" /></div>
+                                <span asp-validation-for="expend.DocNumber"></span>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
     <script type="text/javascript">
 
         $(document).ready(function () {

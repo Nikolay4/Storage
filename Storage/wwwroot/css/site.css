@@ -107,6 +107,10 @@ body {
             height: 6px;
         }
 
+        .row tablename {
+            text-align:center;
+        }
+
             .row.header .cell {
                 display: none;
             }
@@ -142,4 +146,8 @@ body {
 
 input {
     width:100%;
+}
+
+span {
+    color:red;
 }

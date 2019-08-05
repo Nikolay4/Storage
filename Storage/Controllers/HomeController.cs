@@ -27,21 +27,37 @@ namespace Storage.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> CreateIncome(IndexViewModel model)
         {
-            model.incom.ItemId = db.Items.Where(i => i.Id == model.incom.ItemId.Id).FirstOrDefault();
-            db.Incomes.Add(model.incom);
-            await db.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                model.incom.ItemId = db.Items.Where(i => i.Id == model.incom.ItemId.Id).FirstOrDefault();
+                db.Incomes.Add(model.incom);
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                ModelState.AddModelError("income.DocNumber", "error");
+            }
             return RedirectToAction("Index");
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CreateExpend(IndexViewModel model)
         {
-            model.expend.ItemId = db.Items.Where(i => i.Id == model.expend.ItemId.Id).FirstOrDefault();
-            db.Expends.Add(model.expend);
-            await db.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                model.expend.ItemId = db.Items.Where(i => i.Id == model.expend.ItemId.Id).FirstOrDefault();
+                db.Expends.Add(model.expend);
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                ModelState.AddModelError("expend.DocNumber", "error");
+            }
             return RedirectToAction("Index");
         }
     }
